@@ -1,0 +1,119 @@
+body, html{
+  margin:0;
+  padding:0;
+  height:100%;
+  overflow: hidden;
+}
+
+
+.welcome{
+  position:absolute;
+  width:100%;
+  height:200%;
+  background-image: url(https://s.pinimg.com/webapp/style/images/bg_multi_case_grid_no_text_white_55_percent-2000ab22.jpg);
+  background-size: contain;
+  overflow: hidden;
+}
+.welcomeOverlay{
+  position: fixed;
+  width:100%;
+  height:100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+
+}
+.login-popup{
+  margin:auto;
+  width:30%;
+  background:#FFF;
+  border-radius: 5px;
+}
+.container{
+  margin:auto;
+  margin-top:10px;
+  width:90%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  border-bottom:1px solid rgb(163, 163, 163);
+}
+.test-user{
+  margin:auto;
+  width:90%;
+  background:#bd081c;
+  padding:10px;
+  color:#FFF;
+  font-size: 16px;
+  font-weight: bolder;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+.fbLog{
+  width:90%;
+  margin:auto;
+  background-color: #495B95;
+  border-radius: 5px;
+  color: #FFF;
+  font-size: 20px;
+  margin-bottom: 10px;
+
+}
+.fbLog img{
+  height:auto;
+  width:50px;
+}
+.pinImg{
+  width:50px;
+  margin:auto;
+  height:auto;
+  margin-top:10px;
+}
+.gitHub{
+  margin:auto;
+  width:80%;
+  height:auto;
+  display: flex;
+  justify-content: center;
+  margin:10px;
+}
+.gitHub img{
+  margin: auto;
+  width:50px;
+  height:50px;
+}
+
+.gitHub p{
+  margin: auto;
+}
+/*font from pinterest*/
+.container h1{
+  color:#555;
+  font-size:32px;
+  font-weight:bold;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  letter-spacing:-1.2px;
+}
+.login-popup p{
+  color: #555;
+  font-weight: bold;
+  font-size: 16px;
+  padding:5px;
+}
+@media screen and (max-width: 1024px) {
+  .login-popup{
+    width:35%;
+  }
+}
+@media screen and (max-width: 768px) {
+  .login-popup{
+    width:40%;
+  }
+}
+@media screen and (max-width: 760px) {
+  .login-popup{
+    width:90%;
+  }
+}
