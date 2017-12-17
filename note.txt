@@ -1,5 +1,0 @@
-after cloning and upgrading run 
-
-$ rm package-lock.json
-$ rm -rf node_modules
-$ npm install
