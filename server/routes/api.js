@@ -1,8 +1,63 @@
 const express= require('express');
 const router = express.Router();
-const Todo = require('../models/todo');
+const Pin = require('../models/pin');
+const User = require('../models/user');
 
-//get all
+
+//PINS
+router.post('/pin', (req, res, next) => {
+  Pin.create(req.body).then(pin =>{
+    res.send(pin)
+  }).catch(next)
+})
+router.get('/pin', (req, res, next) => {
+  Pin.find({}).then(result => {
+    res.send(result)
+  }).catch(next)
+})
+router.put('/pin/:id', (req, res ,next) => {
+  Pin.findOne({_id: req.params.id}).then((pin)=>{
+    // if is in who delete and vote down else vote up
+    let votes = pin.votes;
+    if(pin.who.indexOf(req.body.user) === -1){
+      pin.who.push(req.body.user)
+      pin.votes = votes +1
+      console.log(pin.votes);
+      pin.save()
+      res.send(pin)
+    }else{
+      pin.who = pin.who.filter(id => id != req.body.user)
+      pin.votes = votes -1
+      console.log(pin.votes);
+
+      pin.save()
+      res.send(pin)
+    }
+  })
+
+})
+
+//User
+router.get('/user/:id', (req, res, next) => {
+  User.findOne({id: req.params.id}).then((result) =>{
+    if(!result){
+      res.status(404);
+      res.send("no User")
+    }
+    else{
+      res.send(result)
+    }
+  }).catch(next)
+})
+
+router.post('/user', (req, res, next) => {
+  User.create(req.body).then((user) =>{
+    res.send(user)
+  }).catch(next)
+})
+
+
+//
 router.get('/todos', function(req, res, next){
   Todo.find({}).then(function(result){
     res.send(result);

@@ -3,6 +3,7 @@ const stateInit = {
   id:Number,
   loginStatus: false,
   img:String,
+  creations: []
 }
 const user = (state = stateInit, action) =>{
   switch(action.type){
@@ -12,7 +13,8 @@ const user = (state = stateInit, action) =>{
       name:action.name,
       id:action.id,
       loginStatus: true,
-      img: action.img
+      img: action.img,
+      creations: []
     }
     default:
     return state

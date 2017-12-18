@@ -2,17 +2,18 @@ const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
 const bodyParser = require('body-parser');
-
+const cors = require('cors')
 
 const app =express();
+app.use(cors())
 app.set('port', (process.env.PORT || 4000));
 
 // uncomment to connetc to db
 
-// var promise = mongoose.connect('mongodb://localhost/todos', {
-//   useMongoClient: true,
-//   /* other options */
-// });
+var promise = mongoose.connect('mongodb://localhost/pin', {
+  useMongoClient: true,
+  /* other options */
+});
 mongoose.Promise = global.Promise;
 
 app.use(bodyParser.json());

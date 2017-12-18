@@ -11,7 +11,7 @@ class Welcome extends React.Component{
     // this.props.user.loginStatus? this.props.history.push('/home'): null
   }
   componentDidMount(){
-    document.addEventL
+    // css animations
     setTimeout(() =>{
       window.scrollTo(0, 0)
     }, 10)
@@ -32,14 +32,56 @@ class Welcome extends React.Component{
       name:"root@kali",
       id:123456,
       loginStatus: true,
-      img: "https://upload.wikimedia.org/wikipedia/en/e/ec/RandomBitmap.png"
+      img: "https://www.offensive-security.com/wp-content/uploads/2015/05/kali-nh1.png"
     }
-    this.props.dispatch(addUser(user))
-    this.props.history.push(`/home`)
+    this.handleSocialLogin(user);
   }
-
+//
+handleSocialLogin = (user) => {
+  fetch(`/api/user/${user.id}`)
+  .then((res) => {
+    if(res.status === 404){
+      fetch('/api/user', {
+                method: 'POST',
+                mode: 'CORS',
+                body: JSON.stringify({
+                  id: user.id,
+                  img:user.img,
+                  name: user.name
+                }),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+        return undefined
+    }else{
+      return res
+    }
+  }).then((res) =>{
+    let data = {
+     id: user.id,
+     img:user.img,
+     name: user.name,
+     loginStatus: true
+   }
+    if(res){
+      return res.json()
+    }else{
+      return data
+    }
+  })
+  .then((data) => {
+    let user = {
+      name:data.name,
+      id:data.id,
+      loginStatus: true,
+      img: data.img,
+      creations: data.creations,
+    }
+     this.props.dispatch(addUser(user))
+  }).then(()=>this.props.history.push('/home'))
+}
   render(){
-    console.log(this.props.user);
     return(
       <div>
         <div id="welcome" className="welcome">
