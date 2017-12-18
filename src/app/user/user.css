@@ -1,0 +1,186 @@
+.user{
+  width:100%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+}
+.userDetail{
+  width:70%;
+  margin:auto;
+  display: flex;
+  flex-direction: row;
+  border-bottom: 1px solid rgb(156, 156, 156);
+}
+.userName{
+  width:30%;
+  display: flex;
+  margin: auto;
+  flex-direction: column;
+  color: #555;
+  font-weight: bold;
+  text-align: center;
+
+
+}
+.userName h3{
+  font-size: 32px;
+  font-weight: bold;
+}
+.userImg{
+  max-width:30%;
+  max-height:150px;
+  margin: auto;
+  padding:5px;
+
+}
+.addPin{
+  position:relative;
+  width:35%;
+  text-align: center;
+}
+.box{
+  margin:auto;
+  position:absolute;
+  width:100%;
+  height:100%;
+  background-image: url(https://cdn.glitch.com/81770a35-1790-4efa-8f7a-c06945d590c2%2Fplus.svg?1513548266552);
+  background-position: center;
+  background-size:50px 50px;
+  background-repeat: no-repeat;
+  background-color: rgb(240, 237, 237);
+  margin-top:60%;
+  border-radius: 8px;
+  color: #555;
+  z-index: 2;
+}
+.box:hover{
+  border:1px solid rgb(180, 180, 180);
+  background-color: rgb(244, 244, 244);
+}
+
+/*
+
+popup
+
+*/
+.col{
+  display: flex;
+  flex-direction: column;
+}
+.row{
+  display: flex;
+  flex-direction: row;
+  margin-left: auto;
+  margin-right: auto;
+}
+.userOverlay{
+  display: none;
+  position:absolute;
+  width:100%;
+  height:100%;
+  background-color:rgba(0, 0, 0, 0.51);
+}
+
+.userPopup{
+  position:absolute;
+  width:100%;
+  height: 100%;
+  background:#FFF;
+  z-index: 3;
+  margin-top: 60%;
+  display: none;
+  border-radius:5px;
+}
+.popupAnimate{
+  margin:auto;
+  opacity:0;
+  display: flex;
+  animation: entrence .5s .3s both linear
+}
+.bye{
+  animation: entrence .5s both linear reverse;
+}
+.pHead{
+  text-align: center;
+  color: #555;
+  width:100%;
+  border-bottom:1px solid rgb(231, 231, 231);
+
+}
+.pHead h4{
+  margin:10px auto;
+  font-size: 8px;
+}
+.pHead span{
+  position:absolute;
+  right:10px;
+  top:10px;
+  font-size: 7px;
+}
+.inputs{
+  margin:auto;
+  max-width: 40%;
+  font-size: 6px;
+}
+.inputs input{
+  outline:none;
+  max-width:100%;
+  max-height:12px;
+  margin-bottom:3px;
+  border-radius: 4px;
+  padding:2px;
+  outline:none;
+  border:none;
+  background: rgb(237, 237, 237);
+}
+.inputs textarea{
+  max-width: 100%;
+  max-height:20px;
+  resize: none;
+  border-radius: 4px;
+  padding:2px;
+  outline:none;
+  border:none;
+  background: rgb(237, 237, 237);
+}
+.inputs input:focus, .inputs textarea:focus{
+    border:1px solid rgb(0, 110, 181);
+}
+.main{
+  width:100%;
+  border-bottom:1px solid rgb(231, 231, 231);
+  padding-bottom: 15px;
+  padding-top:15px;
+}
+.pImg{
+  width:50%;
+  height:auto;
+  margin:auto;
+}
+.pImg img{
+  margin:auto;
+  max-width:90%;
+  max-height:50px;
+}
+.next{
+  width:25px;
+  position: absolute;
+  color:#555;
+  right: 10px;
+  bottom:10px;
+  background:rgb(244, 244, 244);
+  padding:5px;
+  font-size: 7px;
+}
+
+@keyframes entrence {
+  0%{display: none;}
+  1%{opacity: 0; background: transparent; margin-top: 200px;}
+  20%{opacity: 1;}
+  100%{
+    margin-top: 200px;
+    background:#FFF;
+    opacity:1;
+    transform: scale(3, 3)
+  }
+}

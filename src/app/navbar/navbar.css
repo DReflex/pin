@@ -1,0 +1,58 @@
+.navbar{
+  border-radius: 0;
+  background-color: #FFF;
+  border:none;
+  border-bottom: 1px solid rgb(232, 232, 232);
+}
+.navbar-brand{
+  display: flex;
+  flex-direction: row;
+}
+.navbar-brand h3{
+  margin: auto;
+  margin-left: 15px;
+}
+.container-fluid{
+  margin:auto;
+}
+.pinLogo{
+  width:30px;
+  height:30px;
+}
+.navbar-inverse .navbar-nav>li>a {
+    color: #8b8b8b;
+}
+.navbar-nav>li {
+    float: left;
+    outline:none;
+    font-size: 14px;
+    font-weight: bold;
+    margin:auto;
+}
+.nav-img a{
+  padding:10px !important;
+}
+.nav-img img{
+  margin:auto;
+  width:30px;
+  height:30px;
+}
+/*bootstrap edit*/
+.navbar-inverse .navbar-nav>li>a:focus, .navbar-inverse .navbar-nav>li>a:hover{
+  color: #858383;
+  background-color: rgb(241, 241, 241);
+}
+.navbar-inverse .navbar-brand:focus, .navbar-inverse .navbar-brand:hover{
+  color: #858383;
+  cursor: default;
+}
+.navbar-inverse .navbar-toggle{
+  border:none;
+}
+.navbar-inverse .navbar-toggle .icon-bar{
+  background: #CA272C;
+  height:3px;
+}
+.navbar-inverse .navbar-toggle:focus, .navbar-inverse .navbar-toggle:hover{
+  background: #FFF;
+}
