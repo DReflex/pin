@@ -1,13 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { hideNavbar } from '../../actions/index'
 import "./navbar.css"
 // fix navbar this is just display
 class Navbar extends React.Component{
+  componentDidMount(){
+    this.props.dispatch(hideNavbar())
+  }
   render(){
     let user = this.props.user
     return(
-      this.props.user.loginStatus ? (
+      this.props.navbar.show?
+      (
         <nav className="navbar navbar-inverse">
           <div className="container-fluid">
             <div className="navbar-header">
@@ -33,14 +38,16 @@ class Navbar extends React.Component{
             </div>
           </div>
         </nav>
-      ): null
+        ):null
+
 
     )
   }
 }
 const store = (store)=>{
   return {
-    user: store.user
+    user: store.user,
+    navbar: store.navbar
   }
 }
 Navbar = connect(store)(Navbar)

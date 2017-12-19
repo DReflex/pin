@@ -1,6 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { phImg, phDesc, resetPH, phLink, phErr, addPin } from '../../actions/index';
+import {
+   phImg, phDesc, resetPH,
+  phLink, phErr, addPin,
+   userImg,userName,showNavbar
+  } from '../../actions/index';
 import Pins from './pins'
 import './user.css';
 
@@ -9,6 +13,7 @@ class User extends React.Component{
   componentDidMount(){
     document.getElementById('body').style.overflow = "auto"
     this.props.dispatch(resetPH())
+    this.props.dispatch(showNavbar())
 
   }
   togglePopup=()=>{
@@ -42,12 +47,18 @@ class User extends React.Component{
       case "img":
       this.fetchPhoto(value)
       this.props.dispatch(phErr(false))
-
       return this.props.dispatch(phImg(value))
+
       case "desc":
       this.props.dispatch(phErr(false))
-
       return this.props.dispatch(phDesc(value))
+
+      case "u_img":
+      return this.props.dispatch(userImg(value))
+
+      case "u_name":
+      return this.props.dispatch(userName(value))
+
       default:
       return console.log("should never happen");
     }
@@ -80,6 +91,7 @@ class User extends React.Component{
   resetPH = () =>{
     return this.props.dispatch(resetPH())
   }
+
   addPin = () =>{
     let ph = this.props.placeholder
     let link = ph.link;
@@ -122,7 +134,9 @@ class User extends React.Component{
      }
 
   }
-
+  edit= () =>{
+      document.getElementById("editPopup").style.display ="block"
+  }
 
   render(){
     let user=this.props.user
@@ -131,9 +145,21 @@ class User extends React.Component{
     return(
       <div className="user col">
         <div id="overlay" className="userOverlay">
+        </div>
+        <div id="editPopup" className="editPopup">
+          <input onChange={(e)=> this.handleChange(e, "u_img")} placeholder="IMg" value={placeholder.user_img} />
+            <input onChange={(e)=> this.handleChange(e, "u_name")} placeholder="Name" value={placeholder.user_name} />
+            <button onClick={
+                () =>{
+                  document.getElementById("editPopup").style.display ="none"
+                  this.resetPH()
+                 }
 
+              }
+                >close</button>
         </div>
         <div className="userDetail">
+          <span onClick={this.edit} className="edit"><i className="fa fa-pencil" aria-hidden="true"></i></span>
           <div className="userName">
             <h3>{user.name}</h3>
             <p>number of pins <span>4</span></p>

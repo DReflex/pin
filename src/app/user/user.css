@@ -10,6 +10,7 @@
   display: flex;
   flex-direction: row;
   border-bottom: 1px solid rgb(156, 156, 156);
+  position: relative;
 }
 .userName{
   width:30%;
@@ -38,6 +39,14 @@
   width:35%;
   text-align: center;
 }
+.edit{
+  position: absolute;
+  right:10px;
+  top:20px;
+}
+/*heading ends here*/
+
+
 .box{
   margin:auto;
   position:absolute;
@@ -82,7 +91,16 @@ popup
   background-color:rgba(0, 0, 0, 0.7);
   z-index: 3;
 }
-
+/*edit popup*/
+.editPopup{
+  display: none;
+  z-index: 5;
+  background:#FFF;
+  position: absolute;
+  margin:auto;
+  font-size: 20px;
+}
+/**/
 .userPopup{
   position:absolute;
   width:100%;
@@ -182,26 +200,28 @@ Pins start here
   margin:auto;
   margin-top: 200px;
   text-align: center;
-  width:100%;
+  min-width:100%;
   padding-bottom:100px;
   color:#555;
 
 }
+
 .pins{
+  width:20%;
   margin-top:50px;
   border-radius:5px;
   margin-left: 20px;
   border:1px solid rgb(175, 175, 175);
   box-shadow: 1px 1px 1px #555;
 }
-.pinImg{
+.sinlgePin{
   margin: auto;
   width:100%;
   position:relative;
   border-bottom: 1px solid rgb(175, 175, 175);
 
 }
-.pinImg img{
+.sinlgePin img{
   margin:auto;
   margin-top:5px;
   max-width: 90%;
@@ -224,8 +244,11 @@ Pins start here
   max-height: 50px;
 
 }
-.grid-sizer, .pins{
-  width:20%;
+.grid-sizer{
+  height:0;
+}
+.grid-sizer{
+  width:5%;
 }
 
 @keyframes entrence {
@@ -239,11 +262,18 @@ Pins start here
     transform: scale(3, 3)
   }
 }
+@keyframes fadeIn {
+  0%{width:0; height:0}
+  100%{width:auto; height:auto}
+}
 /*
 
 responsive
 */
 @media screen and (max-width:768px) {
+  .grid-sizer{
+    width:33.33%;
+  }
   .pins{
     width:30%;
   }
@@ -266,10 +296,14 @@ responsive
     background-size: 40px 40px;
   }
 }
-@media screen and (max-width:450px) {
+@media screen and (max-width:550px) {
+  .grid-sizer{
+    width:50%
+  }
   .pins{
     width:40%;
   }
+
   .box{
     margin-top:130%;
   }

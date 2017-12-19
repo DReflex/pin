@@ -4,15 +4,26 @@ import Masonry from 'masonry-layout';
 import { resetPin, addPin, votePin } from '../../actions/index';
 import './user.css';
 class Pins extends React.Component{
-  // componentDidMount(){
-  //   this.props.dispatch(resetPin())
-  //   fetch('/api/pin').then(res => res.json())
-  //   .then((pin) => {
-  //     pin.forEach((elem) =>{
-  //     this.props.dispatch(addPin(elem))
-  //     })
-  //   })
-  // }
+  componentDidMount(){
+    this.props.dispatch(resetPin())
+    fetch('/api/pin').then(res => res.json())
+    .then((pin) => {
+      pin.forEach((elem) =>{
+      this.props.dispatch(addPin(elem))
+      })
+    })
+     setTimeout(this.startMasonry, 100);
+  }
+  startMasonry = () =>{
+    var elem = document.querySelector('.pinsContainer');
+    var msnry = new Masonry( elem, {
+    // options
+    itemSelector: '.pins',
+    columnWidth: '.grid-sizer',
+    percentPosition: true
+
+  });
+  }
   handleVote = (id, vote) => {
     fetch(`/api/pin/${id}`,{
       method: 'PUT',
@@ -30,40 +41,17 @@ class Pins extends React.Component{
   }
   render () {
     // put it to component did mount using js
-    var width= window.innerWidth
-    let newWidth;
-    if(width <= 768 && width >= 450){
-      newWidth= `{
-        "columnWidth": 40,
-        "itemSelector": ".pins",
-        "percentPosition": true,
-        "gutter": 10
-      }`
-    }else if(width <= 450){
-      newWidth=`{
-        "columnWidth": 20,
-        "itemSelector": ".pins",
-        "percentPosition": true,
-        "gutter": 10
-      }`
-    }else{
-      newWidth=`{
-        "columnWidth": 50,
-        "itemSelector": ".pins",
-        "percentPosition": true,
-        "gutter": 10
-      }`
-    }
     let pins = this.props.pins
     return(
-      <div data-masonry={newWidth}
+      <div
           className="pinsContainer row">
+          <div className="grid-sizer"></div>
           {
             pins.map((pin, key) => {
 
               return(
                 <div key={key} className="pins col">
-                  <div className="pinImg col">
+                  <div className="sinlgePin col">
                     <img src={pin.img} alt="#S" />
                     <h4>{pin.desc}</h4>
                   </div>

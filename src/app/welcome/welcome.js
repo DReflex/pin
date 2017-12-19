@@ -7,26 +7,13 @@ import { Link, DirectLink, Element , Events, animateScroll as scroll, scrollSpy,
 import { addUser } from '../../actions/index'
 class Welcome extends React.Component{
   componentWillMount(){
-    window.addEventListener('wheel', e => this.handleWheel(e))
     // this.props.user.loginStatus? this.props.history.push('/home'): null
   }
   componentDidMount(){
     // css animations
-    setTimeout(() =>{
-      window.scrollTo(0, 0)
-    }, 10)
-    setTimeout(()=> {
-        scroll.scrollTo(1000,{duration: 30000,smooth:'linear'})
-    }, 1000);
+  }
 
-  }
-  componentWillUnmount(){
-    window.removeEventListener('wheel', e => this.handleWheel(e))
-  }
-  handleWheel = (e) =>{
-    e.preventDefault()
-    scroll.scrollTo(1000,{duration: 15000,smooth:'linear'})
-  }
+
   handleUser = () =>{
     const user ={
       name:"root@kali",
@@ -84,7 +71,7 @@ handleSocialLogin = (user) => {
   render(){
     return(
       <div>
-        <div id="welcome" className="welcome">
+        <div id="welcome" className="welcome"></div>
           <div className="welcomeOverlay">
             <div className="login-popup">
               <div className="container">
@@ -100,7 +87,7 @@ handleSocialLogin = (user) => {
               <p>Check out GitHub</p></div>
             </div>
           </div>
-        </div>
+
 
       </div>
     )

@@ -41,6 +41,18 @@ export const phLink = (link) =>{
     link
   }
 }
+export const userImg = (user_img) =>{
+  return{
+    type:"USER_IMG",
+    user_img
+  }
+}
+export const userName = (user_name) =>{
+  return{
+    type:"USER_NAME",
+    user_name
+  }
+}
 export const resetPH = () =>{return{type:"RESET_PH"}}
 export const phErr = (error) =>{
   return{
@@ -68,5 +80,15 @@ export const votePin = (id, who, votes) =>{
     id,
     who,
     votes
+  }
+}
+export const showNavbar = () =>{
+  return{
+    type:"SHOW"
+  }
+}
+export const hideNavbar = () =>{
+  return{
+    type:"HIDE"
   }
 }
