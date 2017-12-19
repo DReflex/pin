@@ -15,7 +15,7 @@ const pins = (state= stateInit, action)=>{
         votes:action.votes,
       }
     ]
-    case "VOTE_PIN":{
+    case "VOTE_PIN":
       return state.map((pin) =>{
         if(pin.id === action.id){
           return {
@@ -27,7 +27,10 @@ const pins = (state= stateInit, action)=>{
           return pin
         }
       })
-    }
+
+    case "DELETE_PIN":
+    return state.filter(pin => pin.id !== action.id)
+    
     case "RESET_PIN":{
       state = []
     }

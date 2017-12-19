@@ -1,12 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { hideNavbar } from '../../actions/index'
+import { hideNavbar, logout } from '../../actions/index';
+import { withRouter } from 'react-router-dom'
 import "./navbar.css"
 // fix navbar this is just display
 class Navbar extends React.Component{
   componentDidMount(){
     this.props.dispatch(hideNavbar())
+  }
+  handleLogout = () =>{
+    this.props.dispatch(hideNavbar())
+
+    this.props.dispatch(logout())
+    this.props.history.push('/')
   }
   render(){
     let user = this.props.user
@@ -32,8 +39,8 @@ class Navbar extends React.Component{
                 <li><Link to="/home">Home</Link></li>
               </ul>
               <ul className="nav navbar-nav navbar-right">
-                <li className="nav-img"><Link to="/user"><img alt="broken" src={user.img} />{user.name}</Link></li>
-                <li><Link to="#"><span className="glyphicon glyphicon-log-out"></span> Logout</Link></li>
+                <li className="nav-img"><Link to={`/user/${user.id}`}><img alt="broken" src={user.img} />{user.name}</Link></li>
+                <li onClick={this.handleLogout}><Link to="#"><span className="glyphicon glyphicon-log-out"></span> Logout</Link></li>
               </ul>
             </div>
           </div>
@@ -51,4 +58,4 @@ const store = (store)=>{
   }
 }
 Navbar = connect(store)(Navbar)
-export default Navbar
+export default withRouter(Navbar)

@@ -15,6 +15,11 @@ router.get('/pin', (req, res, next) => {
     res.send(result)
   }).catch(next)
 })
+router.get('/pin/:id', (req, res, next) => {
+  console.log(req.params.id);
+  Pin.find({creator_id: req.params.id})
+  .then(result => res.send(result)).catch(next)
+})
 router.put('/pin/:id', (req, res ,next) => {
   Pin.findOne({_id: req.params.id}).then((pin)=>{
     // if is in who delete and vote down else vote up
@@ -36,6 +41,14 @@ router.put('/pin/:id', (req, res ,next) => {
   })
 
 })
+// delete pins
+router.delete('/pin/:id', function(req, res, next){
+  console.log(req.params.id);
+  Pin.findByIdAndRemove({_id: req.params.id}).then(function(del){
+    res.send(del);
+  }).catch(next);
+})
+
 
 //User
 router.get('/user/:id', (req, res, next) => {

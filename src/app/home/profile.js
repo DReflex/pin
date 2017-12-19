@@ -1,32 +1,26 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {
-   phImg, phDesc, resetPH,
-  phLink, phErr, addPin,
-   userImg,userName,showNavbar
-  } from '../../actions/index';
-import Pins from './pins'
-import './user.css';
+import {resetPH,  showNavbar } from '../../actions/index';
+import Pins from '../user/pins'
+import '../user/user.css';
 import UserPopup from '../popups/userPopup'
 import AddPopup from '../popups/addPopup'
-
-class User extends React.Component{
+import { withRouter } from 'react-router-dom'
+class Profile extends React.Component{
   componentWillMount(){
-    let id = this.props.location.pathname.split("/user/")[1]
-    if(id !== this.props.user.id){
-      this.props.history.push('/home')
-    }
+    console.log(this.props.user.id);
     if(this.props.user.id == null){
       this.props.history.push('/')
     }
-
   }
   componentDidMount(){
     document.getElementById('body').style.overflow = "auto"
     this.props.dispatch(resetPH())
     this.props.dispatch(showNavbar())
-
   }
+
+
+
 
   resetPH = () =>{
     return this.props.dispatch(resetPH())
@@ -45,21 +39,8 @@ class User extends React.Component{
       <div className="user col">
         <div id="overlay" className="userOverlay">
         </div>
-
         <UserPopup />
         <AddPopup />
-
-        <div className="userDetail">
-          <span onClick={()=>this.edit("editPopup")} className="edit"><i className="fa fa-pencil" aria-hidden="true"></i></span>
-          <div className="userName">
-            <h3>{user.name}</h3>
-            <p>number of pins <span>4</span></p>
-          </div>
-          <div className="addPin">
-            <div id="box" onClick={()=>this.edit("popup")} className="box"><h4>Create Pin</h4></div>
-            </div>
-          <img alt=" " src={user.img} className="userImg" />
-        </div>
         <Pins />
       </div>
     )
@@ -71,5 +52,5 @@ const store = (store)=>{
     placeholder: store.placeholder
   }
 }
-User = connect(store)(User)
-export default User
+Profile = connect(store)(Profile)
+export default withRouter(Profile)

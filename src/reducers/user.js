@@ -16,6 +16,15 @@ const user = (state = stateInit, action) =>{
       img: action.img,
       creations: []
     }
+    case "LOGOUT":
+    return{
+      ...state,
+      name:"",
+      id:undefined,
+      loginStatus: false,
+      img: "",
+      creations: []
+    }
     default:
     return state
   }

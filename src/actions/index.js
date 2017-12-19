@@ -1,19 +1,4 @@
-let nextTodoId = 0;
 
-
-export const addTodo = (text) =>{
-    return{
-    type: 'ADD_TODO',
-    id: nextTodoId++,
-    text
-  }
-  }
-export const Delete = (num) =>{
-  return{
-    type: 'DELETE',
-    data: num
-  }
-}
 export const addUser = (action) =>{
   return{
     type:"ADD_USER",
@@ -21,6 +6,11 @@ export const addUser = (action) =>{
     id:action.id,
     loginStatus: true,
     img: action.img
+  }
+}
+export const logout = () => {
+  return{
+    type:"LOGOUT"
   }
 }
 export const phImg = (img) =>{
@@ -70,6 +60,12 @@ export const addPin = (action) =>{
     id:action._id,
     who: action.who,
     votes:action.votes,
+  }
+}
+export const deletePin = (id) =>{
+  return{
+    type:"DELETE_PIN",
+    id
   }
 }
 export const resetPin = () => {return{type:"RESET_PIN"}}

@@ -1,0 +1,114 @@
+.editPopup{
+  display: none;
+  z-index: 5;
+  background:#FFF;
+  position: absolute;
+  margin:auto;
+  font-size: 20px;
+  margin-top:150px;
+  width:50%;
+  margin-left:25%;
+  flex-direction: column;
+  color:#555;
+  border:1px solid rgb(208, 208, 208);
+  border-radius: 5px;
+  animation: scale .3s linear both
+}
+
+.PopupHeader{
+  position: relative;
+  width:100%;
+  border-bottom: 3px solid rgb(208, 208, 208);
+  padding:20px;
+  display: flex;
+  justify-content: space-around;
+}
+.PopupHeader h4{
+  margin:auto;
+  font-size: 25px;
+  width:50%;
+  font-weight: bold;
+}
+.PopupHeader span{
+ position:absolute;
+ font-size: 20px;
+ right:20px;
+ top:20px;
+}
+.popupMain{
+  width:100%;
+  padding:20px 0;
+  border-bottom: 3px solid rgb(208, 208, 208);
+}
+.popupMain .popupImg{
+  width:50%;
+  margin:auto;
+  padding-bottom: 20px;
+}
+.popupImg img{
+  margin:auto;
+  width:70%;
+  max-height: 250px;
+}
+.popupMain .popupInput{
+  width:40%;
+  margin:auto;
+}
+.popupInput input, .popupInput textarea{
+  margin:5px auto;
+  border:none;
+  outline:none;
+  background:rgb(227, 227, 227);
+  border-radius: 5px;
+  padding:10px;
+  font-size: 16px;
+  box-sizing: border-box;
+
+}
+.popupInput input:focus, .popupInput textarea:focus{
+  border:3px solid rgb(38, 119, 177) !important;
+  box-sizing: border-box;
+  margin:2px auto;
+}
+.popupEnd{
+  width:30%;
+  max-width: 100px;
+  background:rgb(227, 227, 227);
+  margin:20px 10px 20px auto;
+  padding:5px;
+  border-radius: 5px;
+}
+.popupEnd p{
+  margin: auto;
+  text-align: center;
+}
+@keyframes fadeOut {
+  0%{transform:scale(1, 1);}
+  50%{transform:scale(1, 0.1);}
+  100%{transform:scale(0,0)}
+}
+@keyframes scale {
+  0%{transform: scale(0.0, 0.0);}
+  50%{transform:scale(1, 0.1)}
+  100%{transform: scale(1, 1)}
+}
+@media screen and (max-width:768px) {
+  .editPopup{
+    width:90%;
+    margin-left: 5%;
+    margin-top:50px;
+  }
+  .popupMain .popupImg{
+    width:70%;
+  }
+  .popupMain .popupImg img{
+    margin-left: 15%;
+    max-height: 300px
+  }
+  .popupMain{
+    flex-direction: column;
+  }
+  .popupMain .popupInput{
+    width:90%;
+  }
+}

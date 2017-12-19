@@ -4,24 +4,30 @@ import { connect } from 'react-redux';
 
 import { Link, DirectLink, Element , Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
 // https://s.pinimg.com/webapp/style/images/bg_multi_case_grid_no_text_white_55_percent-2000ab22.jpg
-import { addUser } from '../../actions/index'
+import { addUser, hideNavbar } from '../../actions/index'
 class Welcome extends React.Component{
   componentWillMount(){
     // this.props.user.loginStatus? this.props.history.push('/home'): null
   }
   componentDidMount(){
-    // css animations
+    this.props.dispatch(hideNavbar())
   }
 
 
-  handleUser = () =>{
-    const user ={
+  handleUser = (num) =>{
+    const user0 ={
       name:"root@kali",
       id:123456,
       loginStatus: true,
       img: "https://www.offensive-security.com/wp-content/uploads/2015/05/kali-nh1.png"
-    }
-    this.handleSocialLogin(user);
+    };
+    const user1 ={
+      name:"ubuntu",
+      id:654321,
+      loginStatus: true,
+      img: "https://images.unsplash.com/photo-1476983109555-18ebaf412d7c?auto=format&fit=crop&w=920&q=80"
+    };
+    (num === "0")? this.handleSocialLogin(user0):this.handleSocialLogin(user1)
   }
 //
 handleSocialLogin = (user) => {
@@ -78,8 +84,8 @@ handleSocialLogin = (user) => {
                 <img className="pinImg" src="https://seeklogo.com/images/P/pinterest-icon-logo-D4965B6748-seeklogo.com.png" />
                 <h1>Pinterest Clone</h1>
                 <p>login with test user</p>
-                <div onClick={this.handleUser} className="test-user">test user 1</div>
-                <div className="test-user">test user</div>
+                <div onClick={() =>this.handleUser("0")} className="test-user">test user 1</div>
+                <div onClick={() =>this.handleUser("1")} className="test-user">test user</div>
                 <p>or</p>
                 <div className="fbLog"><img alt="#" src="https://cdn.worldvectorlogo.com/logos/facebook-icon-white.svg"/>Facebook</div>
               </div>
