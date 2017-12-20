@@ -9,8 +9,8 @@ app.use(cors())
 app.set('port', (process.env.PORT || 4000));
 
 // uncomment to connetc to db
-
-var promise = mongoose.connect('mongodb://localhost/pin', {
+var mlab = "mongodb://pinterest:password@ds161316.mlab.com:61316/pinterest"
+var promise = mongoose.connect(mlab, {
   useMongoClient: true,
   /* other options */
 });
