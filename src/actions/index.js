@@ -21,6 +21,13 @@ export const update = (name, img) => {
     img
   }
 }
+export const creations = (creations)=>{
+  return{
+    type:"CREATIONS",
+    creations
+  }
+}
+//
 export const phImg = (img) =>{
   return{
     type: "IMG",

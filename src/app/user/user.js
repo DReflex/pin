@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import {
    phImg, phDesc, resetPH,
   phLink, phErr, addPin,
-   userImg,userName,showNavbar
+   userImg,userName,showNavbar, creations
   } from '../../actions/index';
 import Pins from './pins'
 import './user.css';
@@ -25,7 +25,7 @@ class User extends React.Component{
     document.getElementById('body').style.overflow = "auto"
     this.props.dispatch(resetPH())
     this.props.dispatch(showNavbar())
-
+    this.getNum()
   }
 
   resetPH = () =>{
@@ -36,8 +36,14 @@ class User extends React.Component{
       document.getElementById(id).style.display ="flex"
       document.getElementById("overlay").style.display="block"
   }
+  // add proper functionality
+  getNum = () =>{
+    fetch(`/api/pin/${this.props.user.id}`).then(res =>res.json())
+    .then(data => this.props.dispatch(creations(data.length)))
+  }
 
   render(){
+
     let user=this.props.user
     let placeholder = this.props.placeholder
     let error = placeholder.error? "1px solid rgb(150, 0, 0)": "none"
@@ -53,7 +59,7 @@ class User extends React.Component{
           <span onClick={()=>this.edit("editPopup")} className="edit"><i className="fa fa-pencil" aria-hidden="true"></i></span>
           <div className="userName">
             <h3>{user.name}</h3>
-            <p>number of pins <span>4</span></p>
+            <p>number of pins <span>{user.creations}</span></p>
           </div>
           <div className="addPin">
             <div id="box" onClick={()=>this.edit("popup")} className="box"><h4>Create Pin</h4></div>

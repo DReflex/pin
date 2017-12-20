@@ -3,7 +3,7 @@ const stateInit = {
   id:Number,
   loginStatus: false,
   img:String,
-  creations: []
+  creations: 0
 }
 const user = (state = stateInit, action) =>{
   switch(action.type){
@@ -14,7 +14,6 @@ const user = (state = stateInit, action) =>{
       id:action.id,
       loginStatus: true,
       img: action.img,
-      creations: []
     }
     case "LOGOUT":
     return{
@@ -23,13 +22,17 @@ const user = (state = stateInit, action) =>{
       id:undefined,
       loginStatus: false,
       img: "",
-      creations: []
     }
     case "UPDATE_U":
     return{
       ...state,
       img: action.img,
       name: action.name
+    }
+    case "CREATIONS":
+    return{
+      ...state,
+      creations: action.creations
     }
     default:
     return state
