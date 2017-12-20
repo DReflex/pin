@@ -31,7 +31,7 @@ class Navbar extends React.Component{
 
               <div className="navbar-brand">
                 <img className="pinLogo" src="https://seeklogo.com/images/P/pinterest-icon-logo-D4965B6748-seeklogo.com.png" />
-                <h3>Pinterest Clone</h3>
+                <a target="_blank" href="https://unsplash.com/"><h3>Pinterest Clone</h3></a>
               </div>
             </div>
             <div className="collapse navbar-collapse" id="myNavbar">

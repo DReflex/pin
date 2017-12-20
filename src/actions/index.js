@@ -13,6 +13,14 @@ export const logout = () => {
     type:"LOGOUT"
   }
 }
+export const update = (name, img) => {
+  console.log(name, img);
+  return{
+    type:"UPDATE_U",
+    name,
+    img
+  }
+}
 export const phImg = (img) =>{
   return{
     type: "IMG",

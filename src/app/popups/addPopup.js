@@ -5,7 +5,10 @@ import {
   phLink, phErr, addPin,
    userImg,userName,showNavbar
   } from '../../actions/index';
+  import Masonry from 'masonry-layout';
+
 import './popups.css'
+
 
 
 class AddPopup extends React.Component{
@@ -92,11 +95,21 @@ class AddPopup extends React.Component{
              this.props.dispatch(addPin(data));
              this.disable();
              this.props.dispatch(resetPH());
+             setTimeout(this.startMasonry, 100);
            }
          )
          //
        }
+    }
+    startMasonry = () =>{
+      var elem = document.querySelector('.pinsContainer');
+      var msnry = new Masonry( elem, {
+      // options
+      itemSelector: '.pins',
+      columnWidth: '.grid-sizer',
+      percentPosition: true
 
+    });
     }
   addPin = () =>{
     let ph = this.props.placeholder

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import { resetPH, phImg, phDesc, userImg, userName, phErr } from '../../actions/index'
+import { resetPH, phImg, phDesc, userImg, userName, phErr,update } from '../../actions/index'
 import './popups.css'
 
 class UserPopup extends React.Component{
@@ -42,6 +42,47 @@ class UserPopup extends React.Component{
 
 
   }
+  handleSave =() =>{
+    // http://usatthebiglead.files.wordpress.com/2011/07/pawel-wolak.jpg?w=1000
+    let img = (this.props.placeholder.user_img === "")
+    ? "http://usatthebiglead.files.wordpress.com/2011/07/pawel-wolak.jpg?w=1000"
+    : this.props.placeholder.user_img
+    let name = (this.props.placeholder.user_name === "")? ":D":this.props.placeholder.user_name
+    fetch(img).then((res) =>{
+      if(res.status === 404){
+        console.log("404");
+       fetch(`/api/user/${this.props.user.id}`,{
+          method: 'PUT',
+          mode: 'CORS',
+          body: JSON.stringify({
+            img: "http://usatthebiglead.files.wordpress.com/2011/07/pawel-wolak.jpg?w=1000",
+            name: name
+          }),
+          headers: {
+              'Content-Type': 'application/json'
+          }
+        })
+      this.props.dispatch(update(name, "http://usatthebiglead.files.wordpress.com/2011/07/pawel-wolak.jpg?w=1000"))
+      }else{
+      fetch(`/api/user/${this.props.user.id}`,{
+          method: 'PUT',
+          mode: 'CORS',
+          body: JSON.stringify({
+            img: img,
+            name: name
+          }),
+          headers: {
+              'Content-Type': 'application/json'
+          }
+        })
+        this.props.dispatch(update(name, img))
+      }
+    }).then(()=>{
+      this.exit("editPopup")
+    })
+
+
+  }
   render(){
     let placeholder = this.props.placeholder
     return(
@@ -54,14 +95,14 @@ class UserPopup extends React.Component{
         </div>
         <div className="popupMain row">
           <div className="popupImg">
-            <img src="https://images.unsplash.com/photo-1496243975092-6ec259c776e2?auto=format&fit=crop&w=1350&q=80" />
+            <img src={this.props.user.img} />
           </div>
           <div className="popupInput col">
             <input onChange={(e)=> this.handleChange(e, "u_img")} placeholder="IMg" value={placeholder.user_img} />
             <input onChange={(e)=> this.handleChange(e, "u_name")} placeholder="Name" value={placeholder.user_name} />
           </div>
         </div>
-        <div className="popupEnd"><p>Save</p></div>
+        <div onClick={this.handleSave} className="popupEnd"><p>Save</p></div>
       </div>
 
     )
@@ -70,7 +111,8 @@ class UserPopup extends React.Component{
 
 const store = (store) => {
   return{
-    placeholder: store.placeholder
+    placeholder: store.placeholder,
+    user: store.user
   }
 }
 UserPopup = connect(store)(UserPopup)

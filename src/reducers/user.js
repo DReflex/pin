@@ -25,6 +25,12 @@ const user = (state = stateInit, action) =>{
       img: "",
       creations: []
     }
+    case "UPDATE_U":
+    return{
+      ...state,
+      img: action.img,
+      name: action.name
+    }
     default:
     return state
   }

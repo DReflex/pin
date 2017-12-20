@@ -1,5 +1,6 @@
 import React from 'react';
 import './welcome.css'
+import Login from './login'
 import { connect } from 'react-redux';
 
 import { Link, DirectLink, Element , Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
@@ -11,6 +12,7 @@ class Welcome extends React.Component{
   }
   componentDidMount(){
     this.props.dispatch(hideNavbar())
+      document.getElementById('body').style.overflow = "hidden"
   }
 
 
@@ -87,7 +89,7 @@ handleSocialLogin = (user) => {
                 <div onClick={() =>this.handleUser("0")} className="test-user">test user 1</div>
                 <div onClick={() =>this.handleUser("1")} className="test-user">test user</div>
                 <p>or</p>
-                <div className="fbLog"><img alt="#" src="https://cdn.worldvectorlogo.com/logos/facebook-icon-white.svg"/>Facebook</div>
+                <Login />
               </div>
               <div className="gitHub"><img src="http://pluspng.com/img-png/ok-calling-myself-a-developer-would-be-a-stretch-but-still-two-years-ago-i-had-no-clue-what-git-and-github-was-and-how-to-do-a-pr-256.png" />
               <p>Check out GitHub</p></div>

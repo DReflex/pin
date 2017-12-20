@@ -37,6 +37,10 @@
   width:30px;
   height:30px;
 }
+.navbar-brand a{
+  color:#555;
+  text-decoration: none;
+}
 /*bootstrap edit*/
 .navbar-inverse .navbar-nav>li>a:focus, .navbar-inverse .navbar-nav>li>a:hover{
   color: #858383;
