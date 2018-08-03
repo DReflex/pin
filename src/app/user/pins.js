@@ -51,7 +51,6 @@ class Pins extends React.Component{
   handleVote = (id, vote) => {
     fetch(`/api/pin/${id}`,{
       method: 'PUT',
-      mode: 'CORS',
       body: JSON.stringify({
             user: this.props.user.id
       }),

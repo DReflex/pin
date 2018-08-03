@@ -37,16 +37,13 @@ class AddPopup extends React.Component{
   }
   fetchPhoto =(code) => {
     //logic here
-    var myHeaders = new Headers({
-        'Access-Control-Allow-Origin':'http://localhost:4000',
-        "Access-Control-Allow-Credentials": true,
-        'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
-        'Access-Control-Allow-Methods': 'POST, GET, PATCH, DELETE, OPTIONS'
-      });
-      fetch(`https://safe-brushlands-32516.herokuapp.com/${code}`,{
-        headers:myHeaders,
-        mode:'cors'
-      })
+    // var myHeaders = new Headers({
+    //     'Access-Control-Allow-Origin':'http://localhost:4000',
+    //     "Access-Control-Allow-Credentials": true,
+    //     'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
+    //     'Access-Control-Allow-Methods': 'POST, GET, PATCH, DELETE, OPTIONS'
+    //   });
+      fetch(`https://safe-brushlands-32516.herokuapp.com/${code}`)
       .then((res) => {
         if(res.status === 404){
           var image ="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVlLQ11LjhFhyCJCR0D1nHSv3d1jWMHCfX4LamAunO_0PLVUl9"
@@ -68,7 +65,6 @@ class AddPopup extends React.Component{
        }else{
          fetch(`/api/pin`, {
            method: 'POST',
-           mode: 'CORS',
            body: JSON.stringify({
              desc:desc,
              img: link,
@@ -120,7 +116,6 @@ class AddPopup extends React.Component{
      }else{
        fetch(`/api/pin`, {
          method: 'POST',
-         mode: 'CORS',
          body: JSON.stringify({
            desc:desc,
            img: link,

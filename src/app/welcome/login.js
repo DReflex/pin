@@ -16,7 +16,6 @@ handleSocialLogin = (user) => {
     if(res.status === 404){
       fetch('/api/user', {
                 method: 'POST',
-                mode: 'CORS',
                 body: JSON.stringify({
                   id: user._profile.id,
                   img:user._profile.profilePicURL,

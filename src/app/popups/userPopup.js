@@ -53,7 +53,6 @@ class UserPopup extends React.Component{
         console.log("404");
        fetch(`/api/user/${this.props.user.id}`,{
           method: 'PUT',
-          mode: 'CORS',
           body: JSON.stringify({
             img: "http://usatthebiglead.files.wordpress.com/2011/07/pawel-wolak.jpg?w=1000",
             name: name
@@ -66,7 +65,6 @@ class UserPopup extends React.Component{
       }else{
       fetch(`/api/user/${this.props.user.id}`,{
           method: 'PUT',
-          mode: 'CORS',
           body: JSON.stringify({
             img: img,
             name: name
